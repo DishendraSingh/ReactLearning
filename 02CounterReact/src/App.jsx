@@ -6,17 +6,20 @@ import './App.css'
 function App() {
 let negativeVale =0
 
-let [counter,setCounter] = useState(5)
-function addValue(){
-  console.log("Clicked",counter)
-  counter+=1
-  if(counter == 10)
-  {
-   negativeVale=`value can not be greter then 10 ${negativeVale}`
-   setCounter(negativeVale)
-  }
-  else
-  setCounter(counter)
+let [counter, setCounter] = useState(5);
+
+function addValue() {
+  setCounter(prev => {
+    if (prev >= 10) {
+      alert("Value cannot be greater than 10");  // or handle error
+      return prev; // don’t update further
+    }
+    return prev + 1;
+  });
+
+  setCounter(prev => (prev >= 10 ? prev : prev + 1));//  this is the interview question, how we can increase value directly by dding in this way
+  setCounter(prev => (prev >= 10 ? prev : prev + 1));
+  setCounter(prev => (prev >= 10 ? prev : prev + 1));
 }
 
 function minusValue(){
